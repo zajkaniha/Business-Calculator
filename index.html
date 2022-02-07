@@ -1,0 +1,256 @@
+<html>
+    <head>
+        <link href="./assets/css/bootstrap.css" rel="stylesheet">
+        <style>
+            body {
+                direction: rtl;
+                padding: 20px 0;
+            }
+            span {
+                color: red;
+            }
+            input {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        
+        
+        <div class="container-fluid">
+            <div id="app">  
+
+                <div class="row">
+                    <div class="col"></div>
+
+                    <div class="col">
+                            <table class="table table-striped table-sm text-center">
+                                <thead>
+                                    <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" value="جمع هزینه ها" disabled>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" v-model="sum_cost.toLocaleString()" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" value="افزایش سود (x)" disabled>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" v-model="number_profit" @keyup="change">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" value="باقی مانده" disabled>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" v-model="sum_remaining.toLocaleString()" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" value="قیمت مشتری" disabled>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" v-model="sum_customer.toLocaleString()" disabled>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+
+                    <div class="col"></div>
+                </div>
+                    
+                <div class="row">
+
+                   <div class="col">
+                        <h4 class="text-center pb-2">هزینه ها</h4>
+                        <table class="table table-striped table-sm text-center">
+                            <thead>
+                                <tr>
+                                  <th scope="col">عنوان هزینه</th>
+                                  <th scope="col">قیمت (تومان)</th>
+                                  <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="rows,key in cost" :key="key">
+                                    <td>
+                                        <input class="form-control" v-model="rows.title" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" v-model="rows.price" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger">حذف</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" v-model="ddddddddd" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" v-model="ddddddddd" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">ایجاد</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="col">
+                        <h4 class="text-center pb-2">سود باقی مانده</h4>
+                        <table class="table table-striped table-sm text-center">
+                            <thead>
+                                <tr>
+                                  <th scope="col">سمت</th>
+                                  <th scope="col">درصد</th>
+                                  <th scope="col">قیمت (تومان)</th>
+                                  <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="rows,key in profit" :key="key">
+                                    <td>
+                                        <input class="form-control" v-model="rows.role" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" v-model="rows.percent" @keyup="change">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" v-model="rows.price.toLocaleString()" @keyup="change" disabled>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger">حذف</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" v-model="d" @keyup="change"></td>
+                                    <td><input class="form-control" v-model="sssss" @keyup="change"></td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">ایجاد</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                 
+                
+            </div>
+        </div>
+        
+        <script src="./assets/js/vue.js"></script>
+        <script>
+            
+            var app = new Vue({
+            el: '#app',
+              data: {
+                  
+                cost : [
+                    {
+                        title : "مانیتور",
+                        price : 800000
+                    },{
+                        title : "چوب",
+                        price : 1000000
+                    }
+                    ,{
+                        title : "شیشه",
+                        price : 200000
+                    }
+                    ,{
+                        title : "نور",
+                        price : 100000
+                    }
+                    ,{
+                        title : "ویدیو",
+                        price : 2500000
+                    }
+                ],
+                
+                profit : [
+                    {
+                        role : "نیما",
+                        percent : 10,
+                        price : 0
+                    },
+                    {
+                        role : "پوریا",
+                        percent : 10,
+                        price : 0
+                    },
+                    {
+                        role : "مهدی",
+                        percent : 10,
+                        price : 0
+                    },
+                    {
+                        role : "صندوق",
+                        percent : 45,
+                        price : 0
+                    },
+                    {
+                        role : "مدیر فروش",
+                        percent : 5,
+                        price : 0
+                    },
+                    {
+                        role : "مدیر اجرایی",
+                        percent : 5,
+                        price : 0
+                    },
+                    {
+                        role : "مدیر فنی",
+                        percent : 5,
+                        price : 0
+                    },
+                    {
+                        role : "بازاریاب",
+                        percent : 10,
+                        price : 0
+                    },
+                ],
+                
+
+                sum_cost: 0,
+                number_profit: 2.5,
+                sum_remaining: 0,
+                sum_customer: 0,
+              },
+              created() {
+                  this.change()
+              },
+              methods: {
+                    change(){
+                        this.sum_cost = 0
+                        this.cost.map(rows => {
+                            this.sum_cost += parseFloat(rows.price)
+                        })
+
+                        this.sum_customer = this.sum_cost * this.number_profit
+                        this.sum_remaining = this.sum_customer - this.sum_cost
+
+                        this.profit.map(rows => {
+                            rows.price = (rows.percent * this.sum_remaining)/100
+                        })
+                    }
+              }
+            })
+
+        </script>
+    </body>
+</html>
